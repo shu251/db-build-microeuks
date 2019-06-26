@@ -1,0 +1,25 @@
+# snakemake error description
+# I get a syntax error at the params: line
+
+rule subset_region:
+  input:
+    dbartifact = expand("{base}/pr2-db/{info}.qza", base = SCRATCHDIR, info = VERSION)
+  output:
+    select = expand("{base}/pr2-db/{region}-{info}.qza", base = SCRATCHDIR, region = REGION, info = VERSION)
+  log:
+    SCRATCHDIR + "/pr2-db/logs/db-subset-region.log"
+#  params:
+#    for = PRIMER_F,
+#    rev = PRIMER_R
+  shell:
+    """
+    qiime feature-classifier extract-reads \
+      --i-sequences {input.dbartifact} \
+#      --p-f-primer {params.for} \
+#      --p-r-primer {params.rev} \
+      --p-f-primer CCAGCASCYGCGGTAATTCC \
+      --p-r-primer ACTTTCGTTCTTGATYRA \
+      --p-trunc-len 150 \
+      --o-reads {output.select}
+    """
+
