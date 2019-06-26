@@ -23,7 +23,7 @@ rule all:
     dbartifact = expand("{base}/pr2-db/{info}.qza", base = SCRATCHDIR, info = VERSION),
     dbtaxartifact = expand("{base}/pr2-db/{info}_tax.qza", base = SCRATCHDIR, info = VERSION),
     select = expand("{base}/pr2-db/{region}-{info}.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
-    classifer = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
+    classifier = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
     tax	= expand("{base}/pr2-db/{region}-{info}-outputtax-TEST.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
     taxviz = expand("{base}/pr2-db/{region}-{info}-outputtax-TEST.qzv", base = SCRATCHDIR, region = REGION, info = VERSION)
 
@@ -80,7 +80,7 @@ rule classify:
     dbtaxartifact = expand("{base}/pr2-db/{info}_tax.qza", base = SCRATCHDIR, info = VERSION),
     select = expand("{base}/pr2-db/{region}-{info}.qza", base = SCRATCHDIR, region = REGION, info = VERSION)
   output:
-    classifer = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION)
+    classifier = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION)
   log:
     SCRATCHDIR + "/pr2-db/logs/db-subset-region-classifier.log"
   shell:
@@ -93,7 +93,7 @@ rule classify:
 
 rule qc_check:
   input:
-    classifer = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
+    classifier = expand("{base}/pr2-db/{region}-{info}-classifier.qza", base = SCRATCHDIR, region = REGION, info = VERSION),
     dbartifact = expand("{base}/pr2-db/{info}.qza", base = SCRATCHDIR, info = VERSION)
   output:
     tax = expand("{base}/pr2-db/{region}-{info}-outputtax-TEST.qza", base = SCRATCHDIR, region = REGION, info = VERSION)
