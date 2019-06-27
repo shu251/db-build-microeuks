@@ -1,5 +1,5 @@
-ref_db: /vortexfs1/omics/huber/shu/db/pr2_version_4.11.1_mothur.fasta
-ref_tax: /vortexfs1/omics/huber/shu/db/pr2_version_4.11.1_mothur.tax
+ref_db: /vortexfs1/omics/huber/shu/db-build-microeuks/pr2_version_4.11.1_mothur.fasta
+ref_tax: /vortexfs1/omics/huber/shu/db-build-microeuks/pr2_version_4.11.1_mothur.tax
 version: pr2_4.11.1
 scratch: /vortexfs1/scratch/sarahhu
 

@@ -1,5 +1,6 @@
 # snakemake error description
-# I get a syntax error at the params: line
+# I get a syntax error at the `params` line? (commented out here)
+# does snakemake not play well with qiime2?
 
 rule subset_region:
   input:

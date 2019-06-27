@@ -84,5 +84,12 @@ bash gen-profile/submit-slurm_dry.sh
 # bash gen-profile/submit-slurm.sh
 ```
 
+
+### (5) Run snakemake
+Snakemake will automatically detect 'Snakefile'. ```snake-18S``` conda environment has both snakemake and qiime2 dependencies, so no need to use ```--use-conda``` in this command.
+```
+snakemake 
+```
+
 _Next steps_
 * Troubleshoot primer inputs, qiime2 + snakemake isn't working with params??
