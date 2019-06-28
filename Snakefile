@@ -69,11 +69,13 @@ rule subset_region:
     """
     qiime feature-classifier extract-reads \
       --i-sequences {input.dbartifact} \
-      --p-f-primer CCAGCASCYGCGGTAATTCC \
-      --p-r-primer ACTTTCGTTCTTGATYRA \
+      --p-f-primer {config[primerF]} \
+      --p-r-primer {config[primerR]} \
       --p-trunc-len 150 \
       --o-reads {output.select}
     """
+#      --p-f-primer CCAGCASCYGCGGTAATTCC \
+#      --p-r-primer ACTTTCGTTCTTGATYRA \
 
 rule classify:
   input:
