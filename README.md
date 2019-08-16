@@ -1,15 +1,15 @@
 ### Draft snakemake pipeline to build database for 18S tag-seq
 
 _Workflow_
-* Download recent version of PR2
-* Set up working conda environment
-* Option to set up to run snakemake with slurm
-* Modify config.yaml file
-* Import fasta and tax files as qiime2 artifacts
-* subset V4 hypervariable region
-* train classifer (Naive Bayes classifier)
-* check output
-* log version, etc.
+1. Download recent version of PR2
+2. Set up working conda environment
+3. Modify config.yaml file (location of relevant files, primers to target region of interest, output location)
+4. Run snakefile
+  * Import fasta and tax files as qiime2 artifacts
+  * Subsets V4 hypervariable region (or other amplicon)
+  * train classifer (Naive Bayes classifier)
+  * check output
+  * log version, etc.
 
 
 ### (1) Set up your database working directory
@@ -78,19 +78,31 @@ db_region: V4 # Region of the barcode that these primers highlight
 
 ```
 snakemake -n -r
-# bash gen-profile/submit-slurm_dry.sh # only use if you'd set up snakemake to run with slurm
-
 ```
-
 
 ### (5) Run snakemake
 Snakemake will automatically detect 'Snakefile'. ```snake-18S``` conda environment has both snakemake and qiime2 dependencies, so no need to use ```--use-conda``` in this command.
 ```
 snakemake
-
-# bash gen-profile/submit-slurm.sh # use with slurm integration
 ```
 
-#### **Error descriptions**
-* Troubleshoot primer inputs, qiime2 + snakemake isn't working with params?? See 'primer-param-err.txt' for ideal version of the subset command, where a user can specify primers in the config file. 
-* memory requests
+### (6) Run snakemake with SLURM
+
+[Read about executing snakemake on a cluster](https://snakemake.readthedocs.io/en/stable/executable.html) and another explanation on how to execute with a submit script can be found [here](https://hpc-carpentry.github.io/hpc-python/17-cluster/).    
+Review the submit scripts available in ```submitscripts```. Files in this directory include another config file called ```cluster.yaml```, and two scripts to submit your snakemake pipeline to the cluster with and without the dry run option.   
+First, open and modify the ```cluster.yaml``` to fit your machine. Then test run using the provided submit scripts.
+```
+# Make sure you are still in the snake-tagseq conda environment
+bash submitscripts/submit-slurm-dry.sh
+```
+Outputs should all be green and will report how many jobs and rules snakemake plans to run. This will allow you to evaluate any error and syntax messages.  
+
+Once ready, use the submit-slurm.sh script to submit the jobs to slurm. Run with screen, tmux, or nohup.
+```
+bash submitscripts/submit-slurm.sh
+# This will print jobs submitted as it runs. Monitor these jobs using ```squeue```
+
+```
+
+### (7) Next steps
+See this [snakemake pipeline to run QIIME2](https://github.com/shu251/tagseq-qiime2-snakemake) to use these newly created databases.
