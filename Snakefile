@@ -74,8 +74,6 @@ rule subset_region:
       --p-trunc-len 150 \
       --o-reads {output.select}
     """
-#      --p-f-primer CCAGCASCYGCGGTAATTCC \
-#      --p-r-primer ACTTTCGTTCTTGATYRA \
 
 rule classify:
   input:

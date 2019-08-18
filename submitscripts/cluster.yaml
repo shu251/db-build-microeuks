@@ -1,9 +1,9 @@
 __default__:
     system: 'slurm'
     account: sarahhu
-    time: 300 # in minutes
-    mem: 10 # in GB
-    threads: 8
+    time: 1440 # in minutes
+    mem: 36 # in GB
+    threads: 1
     queue: compute
     nodes: 1
     command_options:
