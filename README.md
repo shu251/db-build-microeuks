@@ -1,4 +1,4 @@
-### Draft snakemake pipeline to build database for 18S tag-seq
+### Snakemake pipeline to build QIIME2 database for tag-sequence analysis
 
 _Workflow_
 1. Download recent version of PR2
@@ -21,8 +21,10 @@ git clone https://github.com/shu251/db-build-microeuks.git
 cd db-build-microeuks # migrate to repo directory
 
 # Download PR2 database (or database of choice)
-wget "https://github.com/pr2database/pr2database/releases/download/4.11.1/pr2_version_4.11.1_mothur.tax.gz"
-wget "https://github.com/pr2database/pr2database/releases/download/4.11.1/pr2_version_4.11.1_mothur.fasta.gz"
+## Last accessed Aug 30, 2019
+# https://github.com/pr2database/pr2database/releases
+wget "https://github.com/pr2database/pr2database/releases/download/v4.12.0/pr2_version_4.12.0_18S_mothur.fasta.gz"
+wget "https://github.com/pr2database/pr2database/releases/download/v4.12.0/pr2_version_4.12.0_18S_mothur.tax.gz"
 gunzip *mothur*.gz
 ```
 
@@ -59,11 +61,11 @@ Enter your preferred text editor to modify ```config.yaml```. _An explanation of
 ```
 # Contents of config.yaml with annotation
 ## Location of the PR2 database (fasta and taxonomy file)
-ref_db: /vortexfs1/omics/huber/shu/db/pr2_version_4.11.1_mothur.fasta
-ref_tax: /vortexfs1/omics/huber/shu/db/pr2_version_4.11.1_mothur.tax
+ref_db: /vortexfs1/omics/huber/shu/db/pr2-db/pr2_version_4.12.0_18S_mothur.fasta
+ref_tax: /vortexfs1/omics/huber/shu/db/pr2-db/pr2_version_4.12.0_18S_mothur.tax
 
 ## version information of your database
-version: pr2_4.11.1
+version: pr2_4.12.0
 
 ## I'm using a HPC with a scratch directory that will be my output directory
 scratch: /vortexfs1/scratch/sarahhu
